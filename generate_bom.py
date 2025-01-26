@@ -239,8 +239,12 @@ def calculate_body_dimensions_from_vertices(body):
     y = round(max_y - min_y, 2)
     z = round(max_z - min_z, 2)
 
+    # Format dimensions to only show decimals if needed
+    format_dimension = lambda v: f"{v:.2f}".rstrip('0').rstrip('.')
+    x, y, z = map(format_dimension, (x, y, z))
+
     # Return the largest dimension and the dimensions in XxYxZ format
-    return max(x, y, z), f"{x}x{y}x{z}"
+    return max(float(x), float(y), float(z)), f"{x} x {y} x {z}"
 
 
 def process_component(component, parts_list, custom_parts, visited_bodies):
