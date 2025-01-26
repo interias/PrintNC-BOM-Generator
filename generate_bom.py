@@ -3,6 +3,60 @@ import csv
 
 
 CUSTOM_PARTS = {
+    "m4x12": {
+        "name": "M4x12",
+        "description": "Bolt M4x12",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m4x16": {
+        "name": "M4x16",
+        "description": "Bolt M4x16",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m5x12": {
+        "name": "M5x12",
+        "description": "Bolt M5x12",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m5x20": {
+        "name": "M5x20",
+        "description": "Bolt M5x20",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m6x12": {
+        "name": "M6x12",
+        "description": "Bolt M6x12",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m6x20": {
+        "name": "M6x20",
+        "description": "Bolt M6x20",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m6x30": {
+        "name": "M6x30",
+        "description": "Bolt M6x30",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m6x50": {
+        "name": "M6x50",
+        "description": "Bolt M6x50",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m8x8 grub": {
+        "name": "M8x8 Grub",
+        "description": "Grub screw M8x8",
+        "show_length": False,
+        "show_dimensions": False,
+    },
     "m5 threaded rod": {
         "name": "M5 Threaded Rod",
         "description": "Threaded rod with M5 thread",
@@ -93,6 +147,24 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": False,
     },
+    "y2 hgr20 rail": {
+        "name": "Y2 HGR20 Rail",
+        "description": "Linear rail for Y2-axis (HGR20)",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "1z hgr20 rail": {
+        "name": "1Z HGR20 Rail",
+        "description": "Linear rail for Z1-axis (HGR20)",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "2z hgr15 rail": {
+        "name": "2Z HGR15 Rail",
+        "description": "Linear rail for Z2-axis (HGR15)",
+        "show_length": True,
+        "show_dimensions": False,
+    },
     "y 1610 ballscrew": {
         "name": "Y 1610 Ballscrew",
         "description": "Ballscrew for Y-axis (1610)",
@@ -117,12 +189,6 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": False,
     },
-    "y2 hgr20 rail": {
-        "name": "Y2 HGR20 Rail",
-        "description": "Linear rail for Y2-axis (HGR20)",
-        "show_length": True,
-        "show_dimensions": False,
-    },
     "y2 1610 ballscrew": {
         "name": "Y2 1610 Ballscrew",
         "description": "Ballscrew for Y2-axis (1610)",
@@ -139,72 +205,6 @@ CUSTOM_PARTS = {
         "name": "Z 1204 Ballscrew",
         "description": "Ballscrew for Z-axis (1204)",
         "show_length": True,
-        "show_dimensions": False,
-    },
-    "1z hgr20 rail": {
-        "name": "1Z HGR20 Rail",
-        "description": "Linear rail for Z1-axis (HGR20)",
-        "show_length": True,
-        "show_dimensions": False,
-    },
-    "2z hgr15 rail": {
-        "name": "2Z HGR15 Rail",
-        "description": "Linear rail for Z2-axis (HGR15)",
-        "show_length": True,
-        "show_dimensions": False,
-    },
-    "m4x12": {
-        "name": "M4x12",
-        "description": "Bolt M4x12",
-        "show_length": False,
-        "show_dimensions": False,
-    },
-    "m4x16": {
-        "name": "M4x16",
-        "description": "Bolt M4x16",
-        "show_length": False,
-        "show_dimensions": False,
-    },
-    "m5x12": {
-        "name": "M5x12",
-        "description": "Bolt M5x12",
-        "show_length": False,
-        "show_dimensions": False,
-    },
-    "m5x20": {
-        "name": "M5x20",
-        "description": "Bolt M5x20",
-        "show_length": False,
-        "show_dimensions": False,
-    },
-    "m6x12": {
-        "name": "M6x12",
-        "description": "Bolt M6x12",
-        "show_length": False,
-        "show_dimensions": False,
-    },
-    "m6x20": {
-        "name": "M6x20",
-        "description": "Bolt M6x20",
-        "show_length": False,
-        "show_dimensions": False,
-    },
-    "m6x30": {
-        "name": "M6x30",
-        "description": "Bolt M6x30",
-        "show_length": False,
-        "show_dimensions": False,
-    },
-    "m6x50": {
-        "name": "M6x50",
-        "description": "Bolt M6x50",
-        "show_length": False,
-        "show_dimensions": False,
-    },
-    "m8x8 grub": {
-        "name": "M8x8 Grub",
-        "description": "Grub screw M8x8",
-        "show_length": False,
         "show_dimensions": False,
     },
 }
