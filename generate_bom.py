@@ -2,6 +2,214 @@ import adsk.core, adsk.fusion, traceback
 import csv
 
 
+CUSTOM_PARTS = {
+    "m5 threaded rod": {
+        "name": "M5 Threaded Rod",
+        "description": "Threaded rod with M5 thread",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "m5 nut": {
+        "name": "M5 Nut",
+        "description": "Standard nut for M5 threads",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m6 threaded rod": {
+        "name": "M6 Threaded Rod",
+        "description": "Threaded rod with M6 thread",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "m6 nut": {
+        "name": "M6 Nut",
+        "description": "Standard nut for M6 threads",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m5 washer": {
+        "name": "M5 Washer",
+        "description": "Flat washer for M5 bolts",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m6 washer": {
+        "name": "M6 Washer",
+        "description": "Flat washer for M6 bolts",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "xframe tubing": {
+        "name": "XFrame Tubing",
+        "description": "Tubing for the X-axis frame",
+        "show_length": True,
+        "show_dimensions": True,
+    },
+    "yframe tubing": {
+        "name": "YFrame Tubing",
+        "description": "Tubing for the Y-axis frame",
+        "show_length": True,
+        "show_dimensions": True,
+    },
+    "yroller tubing": {
+        "name": "YRoller Tubing",
+        "description": "Tubing for the Y-axis roller",
+        "show_length": True,
+        "show_dimensions": True,
+    },
+    "yroller brace": {
+        "name": "YRoller Brace",
+        "description": "Brace for the Y-axis roller",
+        "show_length": False,
+        "show_dimensions": True,
+    },
+    "xgantry tubing": {
+        "name": "XGantry Tubing",
+        "description": "Tubing for the X-axis gantry",
+        "show_length": True,
+        "show_dimensions": True,
+    },
+    "xroller tubing": {
+        "name": "XRoller Tubing",
+        "description": "Tubing for the X-axis roller",
+        "show_length": True,
+        "show_dimensions": True,
+    },
+    "xroller angle": {
+        "name": "XRoller Angle",
+        "description": "Angle brackets for X-axis roller",
+        "show_length": True,
+        "show_dimensions": True,
+    },
+    "x hgr20 rail": {
+        "name": "X HGR20 Rail",
+        "description": "Linear rail for X-axis (HGR20)",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "y hgr20 rail": {
+        "name": "Y HGR20 Rail",
+        "description": "Linear rail for Y-axis (HGR20)",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "y 1610 ballscrew": {
+        "name": "Y 1610 Ballscrew",
+        "description": "Ballscrew for Y-axis (1610)",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "y 2010 ballscrew": {
+        "name": "Y 2010 Ballscrew",
+        "description": "Ballscrew for Y-axis (2010)",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "x 1610 ballscrew": {
+        "name": "X 1610 Ballscrew",
+        "description": "Ballscrew for X-axis (1610)",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "x 2010 ballscrew": {
+        "name": "X 2010 Ballscrew",
+        "description": "Ballscrew for X-axis (2010)",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "y2 hgr20 rail": {
+        "name": "Y2 HGR20 Rail",
+        "description": "Linear rail for Y2-axis (HGR20)",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "y2 1610 ballscrew": {
+        "name": "Y2 1610 Ballscrew",
+        "description": "Ballscrew for Y2-axis (1610)",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "y2 2010 ballscrew": {
+        "name": "Y2 2010 Ballscrew",
+        "description": "Ballscrew for Y2-axis (2010)",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "z 1204 ballscrew": {
+        "name": "Z 1204 Ballscrew",
+        "description": "Ballscrew for Z-axis (1204)",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "1z hgr20 rail": {
+        "name": "1Z HGR20 Rail",
+        "description": "Linear rail for Z1-axis (HGR20)",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "2z hgr15 rail": {
+        "name": "2Z HGR15 Rail",
+        "description": "Linear rail for Z2-axis (HGR15)",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "m4x12": {
+        "name": "M4x12",
+        "description": "Bolt M4x12",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m4x16": {
+        "name": "M4x16",
+        "description": "Bolt M4x16",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m5x12": {
+        "name": "M5x12",
+        "description": "Bolt M5x12",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m5x20": {
+        "name": "M5x20",
+        "description": "Bolt M5x20",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m6x12": {
+        "name": "M6x12",
+        "description": "Bolt M6x12",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m6x20": {
+        "name": "M6x20",
+        "description": "Bolt M6x20",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m6x30": {
+        "name": "M6x30",
+        "description": "Bolt M6x30",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m6x50": {
+        "name": "M6x50",
+        "description": "Bolt M6x50",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+    "m8x8 grub": {
+        "name": "M8x8 Grub",
+        "description": "Grub screw M8x8",
+        "show_length": False,
+        "show_dimensions": False,
+    },
+}
+
+
 def calculate_body_dimensions_from_vertices(body):
     """
     Calculates the dimensions of a body using its vertices.
@@ -152,219 +360,11 @@ def list_and_count_parts():
 
         root_comp = design.rootComponent
 
-        # Define custom_parts dictionary
-        custom_parts = {
-            "m5 threaded rod": {
-                "name": "M5 Threaded Rod",
-                "description": "Threaded rod with M5 thread",
-                "show_length": True,
-                "show_dimensions": False,
-            },
-            "m5 nut": {
-                "name": "M5 Nut",
-                "description": "Standard nut for M5 threads",
-                "show_length": False,
-                "show_dimensions": False,
-            },
-            "m6 threaded rod": {
-                "name": "M6 Threaded Rod",
-                "description": "Threaded rod with M6 thread",
-                "show_length": True,
-                "show_dimensions": False,
-            },
-            "m6 nut": {
-                "name": "M6 Nut",
-                "description": "Standard nut for M6 threads",
-                "show_length": False,
-                "show_dimensions": False,
-            },
-            "m5 washer": {
-                "name": "M5 Washer",
-                "description": "Flat washer for M5 bolts",
-                "show_length": False,
-                "show_dimensions": False,
-            },
-            "m6 washer": {
-                "name": "M6 Washer",
-                "description": "Flat washer for M6 bolts",
-                "show_length": False,
-                "show_dimensions": False,
-            },
-            "xframe tubing": {
-                "name": "XFrame Tubing",
-                "description": "Tubing for the X-axis frame",
-                "show_length": True,
-                "show_dimensions": True,
-            },
-            "yframe tubing": {
-                "name": "YFrame Tubing",
-                "description": "Tubing for the Y-axis frame",
-                "show_length": True,
-                "show_dimensions": True,
-            },
-            "yroller tubing": {
-                "name": "YRoller Tubing",
-                "description": "Tubing for the Y-axis roller",
-                "show_length": True,
-                "show_dimensions": True,
-            },
-            "yroller brace": {
-                "name": "YRoller Brace",
-                "description": "Brace for the Y-axis roller",
-                "show_length": False,
-                "show_dimensions": True,
-            },
-            "xgantry tubing": {
-                "name": "XGantry Tubing",
-                "description": "Tubing for the X-axis gantry",
-                "show_length": True,
-                "show_dimensions": True,
-            },
-            "xroller tubing": {
-                "name": "XRoller Tubing",
-                "description": "Tubing for the X-axis roller",
-                "show_length": True,
-                "show_dimensions": True,
-            },
-            "xroller angle": {
-                "name": "XRoller Angle",
-                "description": "Angle brackets for X-axis roller",
-                "show_length": True,
-                "show_dimensions": True,
-            },
-            "x hgr20 rail": {
-                "name": "X HGR20 Rail",
-                "description": "Linear rail for X-axis (HGR20)",
-                "show_length": True,
-                "show_dimensions": False,
-            },
-            "y hgr20 rail": {
-                "name": "Y HGR20 Rail",
-                "description": "Linear rail for Y-axis (HGR20)",
-                "show_length": True,
-                "show_dimensions": False,
-            },
-            "y 1610 ballscrew": {
-                "name": "Y 1610 Ballscrew",
-                "description": "Ballscrew for Y-axis (1610)",
-                "show_length": True,
-                "show_dimensions": False,
-            },
-            "y 2010 ballscrew": {
-                "name": "Y 2010 Ballscrew",
-                "description": "Ballscrew for Y-axis (2010)",
-                "show_length": True,
-                "show_dimensions": False,
-            },
-            "x 1610 ballscrew": {
-                "name": "X 1610 Ballscrew",
-                "description": "Ballscrew for X-axis (1610)",
-                "show_length": True,
-                "show_dimensions": False,
-            },
-            "x 2010 ballscrew": {
-                "name": "X 2010 Ballscrew",
-                "description": "Ballscrew for X-axis (2010)",
-                "show_length": True,
-                "show_dimensions": False,
-            },
-            "y2 hgr20 rail": {
-                "name": "Y2 HGR20 Rail",
-                "description": "Linear rail for Y2-axis (HGR20)",
-                "show_length": True,
-                "show_dimensions": False,
-            },
-            "y2 1610 ballscrew": {
-                "name": "Y2 1610 Ballscrew",
-                "description": "Ballscrew for Y2-axis (1610)",
-                "show_length": True,
-                "show_dimensions": False,
-            },
-            "y2 2010 ballscrew": {
-                "name": "Y2 2010 Ballscrew",
-                "description": "Ballscrew for Y2-axis (2010)",
-                "show_length": True,
-                "show_dimensions": False,
-            },
-            "z 1204 ballscrew": {
-                "name": "Z 1204 Ballscrew",
-                "description": "Ballscrew for Z-axis (1204)",
-                "show_length": True,
-                "show_dimensions": False,
-            },
-            "1z hgr20 rail": {
-                "name": "1Z HGR20 Rail",
-                "description": "Linear rail for Z1-axis (HGR20)",
-                "show_length": True,
-                "show_dimensions": False,
-            },
-            "2z hgr15 rail": {
-                "name": "2Z HGR15 Rail",
-                "description": "Linear rail for Z2-axis (HGR15)",
-                "show_length": True,
-                "show_dimensions": False,
-            },
-            "m4x12": {
-                "name": "M4x12",
-                "description": "Bolt M4x12",
-                "show_length": False,
-                "show_dimensions": False,
-            },
-            "m4x16": {
-                "name": "M4x16",
-                "description": "Bolt M4x16",
-                "show_length": False,
-                "show_dimensions": False,
-            },
-            "m5x12": {
-                "name": "M5x12",
-                "description": "Bolt M5x12",
-                "show_length": False,
-                "show_dimensions": False,
-            },
-            "m5x20": {
-                "name": "M5x20",
-                "description": "Bolt M5x20",
-                "show_length": False,
-                "show_dimensions": False,
-            },
-            "m6x12": {
-                "name": "M6x12",
-                "description": "Bolt M6x12",
-                "show_length": False,
-                "show_dimensions": False,
-            },
-            "m6x20": {
-                "name": "M6x20",
-                "description": "Bolt M6x20",
-                "show_length": False,
-                "show_dimensions": False,
-            },
-            "m6x30": {
-                "name": "M6x30",
-                "description": "Bolt M6x30",
-                "show_length": False,
-                "show_dimensions": False,
-            },
-            "m6x50": {
-                "name": "M6x50",
-                "description": "Bolt M6x50",
-                "show_length": False,
-                "show_dimensions": False,
-            },
-            "m8x8 grub": {
-                "name": "M8x8 Grub",
-                "description": "Grub screw M8x8",
-                "show_length": False,
-                "show_dimensions": False,
-            },
-        }
-
         parts_list = {}
         visited_bodies = set()  # Track visited bodies to avoid duplicates
 
         # Start processing from the root component
-        process_component(root_comp, parts_list, custom_parts, visited_bodies)
+        process_component(root_comp, parts_list, CUSTOM_PARTS, visited_bodies)
 
         # Export the results to a CSV file
         csv_path = export_parts_list_to_csv(parts_list)
