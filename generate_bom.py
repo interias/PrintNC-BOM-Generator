@@ -293,7 +293,7 @@ def process_component(component, parts_list, custom_parts, visited_bodies):
         process_component(occurrence.component, parts_list, custom_parts, visited_bodies)
 
 
-def export_parts_list_to_csv(parts_list):
+def export_parts_list_to_csv(parts_list, custom_parts):
     """
     Exports the aggregated parts list to a CSV file.
 
@@ -322,20 +322,22 @@ def export_parts_list_to_csv(parts_list):
                 # Write the header
                 csv_writer.writerow(["Position", "Name", "Description", "Quantity", "Length (mm)", "Dimensions (mm)"])
 
-                # Write the aggregated parts, sorted alphabetically by name
+                # Sort parts by the custom_parts dictionary order
                 position = 1
-                for (name, description, length, dimensions), quantity in sorted(parts_list.items(), key=lambda x: x[0][0]):
-                    csv_writer.writerow(
-                        [
-                            position,
-                            name,
-                            description,
-                            quantity,
-                            length if length is not None else "",
-                            dimensions if dimensions is not None else "",
-                        ]
-                    )
-                    position += 1
+                for custom_key in custom_parts.keys():
+                    for (name, description, length, dimensions), quantity in parts_list.items():
+                        if name == custom_parts[custom_key]["name"]:
+                            csv_writer.writerow(
+                                [
+                                    position,
+                                    name,
+                                    description,
+                                    quantity,
+                                    length if length is not None else "",
+                                    dimensions if dimensions is not None else "",
+                                ]
+                            )
+                            position += 1
 
             return file_path
         else:
@@ -367,7 +369,7 @@ def list_and_count_parts():
         process_component(root_comp, parts_list, CUSTOM_PARTS, visited_bodies)
 
         # Export the results to a CSV file
-        csv_path = export_parts_list_to_csv(parts_list)
+        csv_path = export_parts_list_to_csv(parts_list, CUSTOM_PARTS)
         if csv_path:
             ui.messageBox(f"Parts list exported: {csv_path}")
         else:
