@@ -9,7 +9,7 @@ A Python-based tool to automate the creation of detailed Bills of Materials (BOM
 - **Customizable Part Data**: Use a configurable dictionary to manage part names, descriptions, and display options.
 - **Dimension and Length Calculation**: Calculates the largest dimension or detailed dimensions (XxYxZ) for parts based on configuration.
 - **CSV Export**: Exports the BOM to a structured CSV file for further use.
-- **Alphabetical Sorting**: Ensures the BOM is sorted by part names for better readability.
+- **BOM Sorted by CUSTOM_PARTS dict**: The BOM is sorted by the CUSTOM_PARTS dict.
 
 ---
 
