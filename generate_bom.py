@@ -244,7 +244,7 @@ def calculate_body_dimensions_from_vertices(body):
     x, y, z = map(format_dimension, (x, y, z))
 
     # Return the largest dimension and the dimensions in XxYxZ format
-    return max(float(x), float(y), float(z)), f"{x} x {y} x {z}"
+    return format_dimension(max(float(x), float(y), float(z))), f"{x} x {y} x {z}"
 
 
 def process_component(component, parts_list, custom_parts, visited_bodies):
