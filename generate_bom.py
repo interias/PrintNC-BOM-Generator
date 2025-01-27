@@ -57,8 +57,14 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
     },
-    "m5 threaded rod": {
-        "name": "M5 Threaded Rod",
+    "x m5 threaded rod": {
+        "name": "X M5 Threaded Rod",
+        "description": "",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "y m5 threaded rod": {
+        "name": "Y M5 Threaded Rod",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
@@ -69,8 +75,14 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
     },
-    "m6 threaded rod": {
-        "name": "M6 Threaded Rod",
+    "x m6 threaded rod": {
+        "name": "X M6 Threaded Rod",
+        "description": "",
+        "show_length": True,
+        "show_dimensions": False,
+    },
+    "y m6 threaded rod": {
+        "name": "Y M6 Threaded Rod",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
