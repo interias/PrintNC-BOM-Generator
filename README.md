@@ -15,25 +15,7 @@ A Python-based tool to automate the creation of detailed Bills of Materials (BOM
 
 ## Installation
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/printnc-bom-generator.git
-    cd printnc-bom-generator
-    ```
-
-2. Ensure you have Python 3.9 or newer installed.
-
-3. Install the required dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4. Load the script into **Fusion 360**:
-   - Open Fusion 360.
-   - Go to `Scripts and Add-Ins` (under the `Add-Ins` menu).
-   - Click `+` to add a new script and select this project folder.
-
----
+Either ollow the fusion 360 manual for creating a new script (https://help.autodesk.com/view/fusion360/ENU/?guid=GUID-9701BBA7-EC0E-4016-A9C8-964AA4838954)
 
 ## Usage
 
