@@ -47,13 +47,21 @@ custom_parts = {
         "description": "Standard nut for M5 threads",
         "show_length": False,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "xframe tubing": {
         "name": "XFrame Tubing",
         "description": "Tubing for the X-axis frame",
         "show_length": True,
         "show_dimensions": True,
+        "override_quantity": False,
     },
+    "1z hgr20 rail": {
+        "name": "1Z HGR20 Rail",
+        "description": "",
+        "show_length": True,
+        "show_dimensions": False,
+        "override_quantity": 2,
 }
 ```
 
