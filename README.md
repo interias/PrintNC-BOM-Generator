@@ -55,6 +55,7 @@ The tool uses a configurable `custom_parts` dictionary to define:
 - **Description**: Additional information about the part.
 - **Show Length**: Whether to display the largest dimension (`True` or `False`).
 - **Show Dimensions**: Whether to display full dimensions in `XxYxZ` format (`True` or `False`).
+- **Override Quantity**: If `False` the quantity will be aggregated, else if an integer value greater `0` is provided, the given value will be used for the quantity of this parts.
 
 ### Example `custom_parts` Entry
 ```python

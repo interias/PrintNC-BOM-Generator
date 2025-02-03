@@ -8,216 +8,252 @@ CUSTOM_PARTS = {
         "description": "",
         "show_length": False,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "m4x16": {
         "name": "M4x16",
         "description": "",
         "show_length": False,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "m5x12": {
         "name": "M5x12",
         "description": "",
         "show_length": False,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "m5x20": {
         "name": "M5x20",
         "description": "",
         "show_length": False,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "m6x12": {
         "name": "M6x12",
         "description": "",
         "show_length": False,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "m6x20": {
         "name": "M6x20",
         "description": "",
         "show_length": False,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "m6x30": {
         "name": "M6x30",
         "description": "",
         "show_length": False,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "m6x50": {
         "name": "M6x50",
         "description": "",
         "show_length": False,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "m8x8 grub": {
         "name": "M8x8 Grub",
         "description": "",
         "show_length": False,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "x m5 threaded rod": {
         "name": "X M5 Threaded Rod",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "y m5 threaded rod": {
         "name": "Y M5 Threaded Rod",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "m5 nut": {
         "name": "M5 Nut",
         "description": "",
         "show_length": False,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "x m6 threaded rod": {
         "name": "X M6 Threaded Rod",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "y m6 threaded rod": {
         "name": "Y M6 Threaded Rod",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "m6 nut": {
         "name": "M6 Nut",
         "description": "",
         "show_length": False,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "m5 washer": {
         "name": "M5 Washer",
         "description": "",
         "show_length": False,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "m6 washer": {
         "name": "M6 Washer",
         "description": "",
         "show_length": False,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "xframe tubing": {
         "name": "XFrame Tubing",
         "description": "",
         "show_length": True,
         "show_dimensions": True,
+        "override_quantity": False,
     },
     "yframe tubing": {
         "name": "YFrame Tubing",
         "description": "",
         "show_length": True,
         "show_dimensions": True,
+        "override_quantity": False,
     },
     "yroller tubing": {
         "name": "YRoller Tubing",
         "description": "",
         "show_length": True,
         "show_dimensions": True,
+        "override_quantity": False,
     },
     "yroller brace": {
         "name": "YRoller Brace",
         "description": "",
         "show_length": False,
         "show_dimensions": True,
+        "override_quantity": False,
     },
     "xgantry tubing": {
         "name": "XGantry Tubing",
         "description": "",
         "show_length": True,
         "show_dimensions": True,
+        "override_quantity": False,
     },
     "xroller tubing": {
         "name": "XRoller Tubing",
         "description": "",
         "show_length": True,
         "show_dimensions": True,
+        "override_quantity": False,
     },
     "xroller angle": {
         "name": "XRoller Angle",
         "description": "",
         "show_length": True,
         "show_dimensions": True,
+        "override_quantity": False,
     },
     "x hgr20 rail": {
         "name": "X HGR20 Rail",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": 2,
     },
     "y hgr20 rail": {
         "name": "Y HGR20 Rail",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "y2 hgr20 rail": {
         "name": "Y2 HGR20 Rail",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "1z hgr20 rail": {
         "name": "1Z HGR20 Rail",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": 2,
     },
     "2z hgr15 rail": {
         "name": "2Z HGR15 Rail",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": 2,
     },
     "y 1610 ballscrew": {
         "name": "Y 1610 Ballscrew",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "y 2010 ballscrew": {
         "name": "Y 2010 Ballscrew",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "x 1610 ballscrew": {
         "name": "X 1610 Ballscrew",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "x 2010 ballscrew": {
         "name": "X 2010 Ballscrew",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "y2 1610 ballscrew": {
         "name": "Y2 1610 Ballscrew",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "y2 2010 ballscrew": {
         "name": "Y2 2010 Ballscrew",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": False,
     },
     "z 1204 ballscrew": {
         "name": "Z 1204 Ballscrew",
         "description": "",
         "show_length": True,
         "show_dimensions": False,
+        "override_quantity": False,
     },
 }
 
@@ -296,13 +332,18 @@ def process_component(component, parts_list, custom_parts, visited_bodies):
         description = part_info["description"]
         length = largest_dimension if part_info.get("show_length", False) else None
         dimensions = xyz_dimensions if part_info.get("show_dimensions", False) else None
+        override_quantity = part_info.get("override_quantity", False)
+        
+        # Set quantity directly if override_quantity is provided
+        quantity = override_quantity if override_quantity else 1
 
         # Aggregate the part in the parts list
         key = (name, description, length, dimensions)  # Use name, description, length, and dimensions as the unique key
         if key in parts_list:
-            parts_list[key] += 1
+            if override_quantity is False:
+                parts_list[key] += 1
         else:
-            parts_list[key] = 1
+            parts_list[key] = quantity
 
     # Process sub-components recursively
     for occurrence in component.occurrences:
