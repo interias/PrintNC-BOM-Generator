@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "updated": "2026-10-25",
+  "source": "CNC Sourcing Guide PL/EU v2 (https://estovisioncontact-bit.github.io/cnc-sourcing-pl-eu/)",
+  "note": "EU/PL supplier paths for PrintNC / LowRider V4 / MPCNC. Lengths and quantities must come from your CAD cutting list; these are sourcing routes, not fixed quotes.",
+  "suppliers": [
+    {"category": "linear_rails_hgr20", "part": "HGR20 rail + HGW20CC block", "builds": ["PrintNC"], "suppliers": ["eBay.de", "eBay.pl (DE/IT sellers)", "AliExpress EU warehouse"], "notes": "Filter 'ships from Germany/Italy'; 0 customs, 3-10 days. PrintNC needs 2 blocks per rail (8 blocks for X/Y)."},
+    {"category": "linear_rails_sbr20", "part": "SBR20 rail", "builds": ["MPCNC", "LowRider (budget)"], "suppliers": ["VEVOR EU"], "notes": "Often cheapest long rails; check shipping cost."},
+    {"category": "ballscrews", "part": "SFU1605/SFU1610/SFU1204 + BK/BF supports", "builds": ["PrintNC"], "suppliers": ["eBay.de (DE)", "AliExpress EU warehouse"], "notes": "Avoid non-EU shipping."},
+    {"category": "steel_tubing", "part": "75x50x3 mm rectangular tube, 75x75x4 mm (gate)", "builds": ["PrintNC"], "suppliers": ["local steel supplier", "OLX (PL)", "hardware store"], "notes": "Buy local - weight kills shipping. Ask for cut-to-length. Get 2-3 quotes."},
+    {"category": "emt_conduit", "part": "EMT 25 mm conduit", "builds": ["LowRider V4", "MPCNC"], "suppliers": ["hardware store (PL/EU)", "OLX"], "notes": "Local pickup only."},
+    {"category": "steppers_drivers", "part": "NEMA17/NEMA23 + drivers", "builds": ["PrintNC", "LowRider V4", "MPCNC"], "suppliers": ["AliExpress EU warehouse", "local 3D printer shops"], "notes": "EU warehouse = no customs."},
+    {"category": "control_boards", "part": "FluidNC / Jackpot clone board", "builds": ["LowRider V4", "MPCNC"], "suppliers": ["AliExpress EU warehouse", "Elecrow direct"], "notes": "Avoid US resellers (VAT + customs + returns)."},
+    {"category": "printed_parts", "part": "Printed MPCNC/LowRider parts", "builds": ["MPCNC", "LowRider V4"], "suppliers": ["v1engineering.com/license (EU vendors)", "V1E forum makers (DE/PL)"], "notes": "PETG/PA; cheaper and faster than US import."},
+    {"category": "cnc_plates", "part": "LowRider machined plates", "builds": ["LowRider V4"], "suppliers": ["HaWiWi (DE, V1E-affiliated)"], "notes": "Stock often sold out - check availability."},
+    {"category": "fasteners", "part": "M3/M5 metric fasteners", "builds": ["MPCNC", "LowRider V4", "PrintNC"], "suppliers": ["local fastener shop", "stationary hardware store"], "notes": "Metric local, not McMaster (US)."}
+  ],
+  "cost_bands_eur": {"MPCNC": "250-450", "LowRider V4": "450-800", "PrintNC": "800-1500"},
+  "traps": [
+    "HGR20 + HGW20CC block (flanged), not MGN12 or HGH20.",
+    "Rail kit often includes 1 block per rail; PrintNC needs 2 blocks per rail.",
+    "Rail/screw lengths come from your CAD cutting list - do not order 'standard' lengths blindly.",
+    "Steel: get 2-3 local quotes; full 6m bar can be cheaper than cut pieces.",
+    "Electronics from US = VAT + handling + long returns; buy EU warehouse or direct (Elecrow).",
+    "Printed MPCNC parts from US: 50+ EUR shipping + customs; print locally or buy from licensed EU vendors."
+  ]
+}
