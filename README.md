@@ -112,6 +112,15 @@ The Unrecognized Parts section adds a trailing **Path** column showing where eac
 
 ---
 
+## EU/PL supplier data
+
+This repo now includes reference sourcing data for EU/PL builders:
+
+- `eu_suppliers.json` — structured supplier paths, cost bands and ordering traps
+- `eu_suppliers.csv` — flat table for quick import/spreadsheets
+
+Data source: CNC Sourcing Guide PL/EU v2. Lengths and quantities must still come from your CAD cutting list.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
