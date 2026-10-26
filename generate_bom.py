@@ -11,6 +11,27 @@ IGNORED_COMPONENT_PATH_PARTS = (
 )
 
 
+# Default body names Fusion assigns per UI language (string table key
+# BodyDefaultUserName). The language of whoever created the body applies, so a
+# model can mix them, e.g. "Body1" next to "Körper2".
+GENERIC_BODY_NAMES = (
+    "Body",     # en
+    "Körper",   # de
+    "Corps",    # fr
+    "Cuerpo",   # es
+    "Corpo",    # it, pt-BR
+    "Bryła",    # pl
+    "Gövde",    # tr
+    "ボディ",    # ja
+    "본체",      # ko
+    "实体",      # zh-CN
+)
+GENERIC_BODY_NAME_PATTERN = re.compile(
+    r"(?:" + "|".join(map(re.escape, GENERIC_BODY_NAMES)) + r")\s*(?:\d+)?(?:\s*\(\d+\))*",
+    re.IGNORECASE,
+)
+
+
 CUSTOM_PARTS = {
     "m4x8 Pan Head": {
         "name": "M4x8 Pan Head",
@@ -509,7 +530,7 @@ def is_generic_body_name(name):
     """Return whether a Fusion body has an automatically generated name."""
     if not name:
         return True
-    return re.fullmatch(r"body(?:\d+)?(?:\s*\(\d+\))*", name.strip(), re.IGNORECASE) is not None
+    return GENERIC_BODY_NAME_PATTERN.fullmatch(name.strip()) is not None
 
 
 def process_component(component, component_path, parts_list, custom_parts, unrecognized_parts):
@@ -601,7 +622,9 @@ def export_parts_list_to_csv(parts_list, custom_parts, unrecognized_parts, model
         if dialog_result == adsk.core.DialogResults.DialogOK:
             file_path = file_dialog.filename
 
-            with open(file_path, "w", newline="") as csvfile:
+            # Keep the platform encoding so Excel honors "sep=", but don't fail on
+            # characters it cannot represent (e.g. Japanese body names).
+            with open(file_path, "w", newline="", errors="replace") as csvfile:
                 # Tell Excel to use commas regardless of the system list separator.
                 csvfile.write("sep=,\n")
                 csv_writer = csv.writer(csvfile)
