@@ -3,6 +3,15 @@ import csv
 import re
 
 
+# Adds a "Supplier Hint" column to the parts sections. The hints are sourcing
+# routes for EU builders (no customs, short lead times), not fixed quotes.
+INCLUDE_SUPPLIER_HINTS = False
+
+SUPPLIER_EU_ONLINE = "eBay.de / AliExpress EU warehouse"
+SUPPLIER_LOCAL_FASTENERS = "Local fastener shop (metric)"
+SUPPLIER_LOCAL_STEEL = "Local steel supplier, cut to length (compare 2-3 quotes)"
+
+
 IGNORED_COMPONENT_PATH_PARTS = (
     "cutting area",
     "plywood",
@@ -39,6 +48,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "m4x12": {
         "name": "M4x12",
@@ -46,6 +56,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "m4x16": {
         "name": "M4x16",
@@ -53,6 +64,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "m5x12": {
         "name": "M5x12",
@@ -60,6 +72,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "m5x20": {
         "name": "M5x20",
@@ -67,6 +80,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
         "aliases": ["m5-20"],
     },    
     "m6x12": {
@@ -75,6 +89,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "m6x20": {
         "name": "M6x20",
@@ -82,6 +97,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "m6x30": {
         "name": "M6x30",
@@ -89,6 +105,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "m6x50": {
         "name": "M6x50",
@@ -96,6 +113,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "m8x8 grub": {
         "name": "M8x8 Grub",
@@ -103,6 +121,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "m8x45": {
         "name": "M8x45",
@@ -110,6 +129,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },    
     "x m5 threaded rod": {
         "name": "X M5 Threaded Rod",
@@ -117,6 +137,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "y m5 threaded rod": {
         "name": "Y M5 Threaded Rod",
@@ -124,6 +145,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "m5 nut": {
         "name": "M5 Nut",
@@ -131,6 +153,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "x m6 threaded rod": {
         "name": "X M6 Threaded Rod",
@@ -138,6 +161,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "y m6 threaded rod": {
         "name": "Y M6 Threaded Rod",
@@ -145,6 +169,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "m6 nut": {
         "name": "M6 Nut",
@@ -152,6 +177,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "m5 washer": {
         "name": "M5 Washer",
@@ -159,6 +185,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "m6 washer": {
         "name": "M6 Washer",
@@ -166,6 +193,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_FASTENERS,
     },
     "x hgr20 rail": {
         "name": "X HGR20 Rail",
@@ -173,6 +201,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": False,
         "override_quantity": 2,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "y hgr20 rail": {
         "name": "Y HGR20 Rail",
@@ -180,6 +209,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "1z hgr20 rail": {
         "name": "1Z HGR20 Rail",
@@ -187,6 +217,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": False,
         "override_quantity": 2,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "2z hgr15 rail": {
         "name": "2Z HGR15 Rail",
@@ -194,6 +225,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": False,
         "override_quantity": 2,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "hgh15ca": {
         "name": "HGH15CA slider block",
@@ -201,6 +233,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },    
     "hgw20cc": {
         "name": "HGW20CC slider block",
@@ -208,6 +241,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },    
     "y 1610 ballscrew": {
         "name": "Y 1610 Ballscrew",
@@ -215,6 +249,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "y 2010 ballscrew": {
         "name": "Y 2010 Ballscrew",
@@ -222,6 +257,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "x 1610 ballscrew": {
         "name": "X 1610 Ballscrew",
@@ -229,6 +265,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "x 2010 ballscrew": {
         "name": "X 2010 Ballscrew",
@@ -236,6 +273,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "z 1204 ballscrew": {
         "name": "Z 1204 Ballscrew",
@@ -243,6 +281,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "m6 flush grease fitting": {
         "name": "M6 Flush Grease Fitting",
@@ -264,6 +303,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "hm15-57": {
         "name": "HM15-57 Ballscrew Mount",
@@ -271,6 +311,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "hm10-57": {
         "name": "HM10-57 Ballscrew Mount",
@@ -278,6 +319,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "bk10": {
         "name": "BK10 Ballscrew Mount",
@@ -285,6 +327,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "bk12": {
         "name": "BK12 Ballscrew Mount",
@@ -292,6 +335,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "bk15": {
         "name": "BK15 Ballscrew Mount",
@@ -299,6 +343,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "bf12": {
         "name": "BF12 Ballscrew Mount",
@@ -306,6 +351,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "bf15": {
         "name": "BF15 Ballscrew Mount",
@@ -313,6 +359,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "d30l40 8-10mm coupler": {
         "name": "D30L40 8-10mm Coupler",
@@ -341,6 +388,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "sfu2010 nut": {
         "name": "SFU2010 Ballscrew Nut",
@@ -349,6 +397,7 @@ CUSTOM_PARTS = {
         "show_dimensions": False,
         # The X-axis nut body is generically named "Body1" in V4.0.37.
         "override_quantity": 3,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     # Keep the more specific nut-block entry before the nut entry because names
     # are matched by prefix after normalization.
@@ -358,6 +407,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "sfu1204 ballscrew nut": {
         "name": "SFU1204 Ballscrew Nut",
@@ -365,6 +415,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "nema23 stepper": {
         "name": "NEMA23 Stepper Motor and Driver",
@@ -372,6 +423,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "m8 npn-nc inductive sensor": {
         "name": "M8 NPN-NC Inductive Sensor",
@@ -456,6 +508,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": True,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_STEEL,
         "category": "fabricated",
     },
     "yframe tubing": {
@@ -464,6 +517,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": True,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_STEEL,
         "category": "fabricated",
     },
     "yroller tubing": {
@@ -472,6 +526,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": True,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_STEEL,
         "category": "fabricated",
     },
     "yroller brace": {
@@ -488,6 +543,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": True,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_STEEL,
         "category": "fabricated",
     },
     "xroller tubing": {
@@ -496,6 +552,7 @@ CUSTOM_PARTS = {
         "show_length": True,
         "show_dimensions": True,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_LOCAL_STEEL,
         "category": "fabricated",
     },
     "xroller angle": {
@@ -685,9 +742,10 @@ def export_parts_list_to_csv(parts_list, custom_parts, unrecognized_parts, model
 
                 def write_parts_section(title, category):
                     csv_writer.writerow([title])
-                    csv_writer.writerow(
-                        ["Position", "Name", "Description", "Quantity", "Length (mm)", "Dimensions (mm)"]
-                    )
+                    header = ["Position", "Name", "Description", "Quantity", "Length (mm)", "Dimensions (mm)"]
+                    if INCLUDE_SUPPLIER_HINTS:
+                        header.append("Supplier Hint")
+                    csv_writer.writerow(header)
 
                     position = 1
                     for custom_key, custom_part in custom_parts.items():
@@ -696,16 +754,17 @@ def export_parts_list_to_csv(parts_list, custom_parts, unrecognized_parts, model
 
                         for (name, description, length, dimensions), quantity in parts_list.items():
                             if name == custom_part["name"]:
-                                csv_writer.writerow(
-                                    [
-                                        position,
-                                        name,
-                                        description,
-                                        quantity,
-                                        length if length is not None else "",
-                                        dimensions if dimensions is not None else "",
-                                    ]
-                                )
+                                row = [
+                                    position,
+                                    name,
+                                    description,
+                                    quantity,
+                                    length if length is not None else "",
+                                    dimensions if dimensions is not None else "",
+                                ]
+                                if INCLUDE_SUPPLIER_HINTS:
+                                    row.append(custom_part.get("supplier_hint", ""))
+                                csv_writer.writerow(row)
                                 position += 1
 
                 write_parts_section("Purchased Components", "purchased")

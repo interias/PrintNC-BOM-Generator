@@ -48,6 +48,7 @@ The tool uses a `CUSTOM_PARTS` dictionary (defined at the top of `generate_bom.p
 - **override_quantity**: If `False`, the quantity is aggregated by counting matching bodies. If an integer `> 0` is provided, that fixed value is used as the quantity instead.
 - **category** *(optional)*: `"purchased"` or `"fabricated"`; defaults to `"purchased"`.
 - **aliases** *(optional)*: A list of additional key strings that should also match this part.
+- **supplier_hint** *(optional)*: Where to source the part, shown in the **Supplier Hint** column when `INCLUDE_SUPPLIER_HINTS = True` (off by default). The bundled hints are sourcing routes for EU builders, not fixed quotes.
 
 > **Note:** Matching is by normalized prefix, so define more specific keys before more general ones (e.g. `"sfu1204 ballscrew nut block 22mm bore"` before `"sfu1204 ballscrew nut"`).
 
@@ -108,7 +109,7 @@ Each parts section uses the following columns:
 | 1            | X M5 Threaded Rod   | X-axis threaded rod | 5          | 300.0           |                     |
 | 2            | Steel: X Frame Tubing | X-frame steel tubing | 2       | 500.0           | 500 x 50 x 50       |
 
-The Unrecognized Parts section adds a trailing **Path** column showing where each unmatched body lives in the component tree.
+With `INCLUDE_SUPPLIER_HINTS = True`, the parts sections add a trailing **Supplier Hint** column. The Unrecognized Parts section adds a trailing **Path** column showing where each unmatched body lives in the component tree.
 
 ---
 
