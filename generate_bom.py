@@ -387,6 +387,13 @@ CUSTOM_PARTS = {
         "show_dimensions": False,
         "override_quantity": False,
     },
+    "80mm 2.2kw spindle": {
+        "name": "80mm 2.2kW Spindle",
+        "description": "Water-cooled spindle",
+        "show_length": False,
+        "show_dimensions": False,
+        "override_quantity": False,
+    },
     "wasteboard": {
         "name": "Wasteboard",
         "description": "Replaceable work surface",
@@ -406,6 +413,38 @@ CUSTOM_PARTS = {
     "1z plate": {
         "name": "1Z Plate (alu or steel)",
         "description": "Single-carriage Z plate (alu easier for manual cutting/drilling)",
+        "show_length": False,
+        "show_dimensions": True,
+        "override_quantity": False,
+        "category": "fabricated",
+    },
+    "2z 300mm z plate": {
+        "name": "2Z Plate (alu or steel)",
+        "description": "Dual-carriage Z plate (alu easier for manual cutting/drilling)",
+        "show_length": False,
+        "show_dimensions": True,
+        "override_quantity": False,
+        "category": "fabricated",
+    },
+    "2z tram plate": {
+        "name": "2Z Tram Plate (alu or steel)",
+        "description": "Spindle tram plate (alu easier for manual cutting/drilling)",
+        "show_length": False,
+        "show_dimensions": True,
+        "override_quantity": False,
+        "category": "fabricated",
+    },
+    "2z zplate tram bar": {
+        "name": "2Z Tram Bar (alu or steel)",
+        "description": "Z-plate tram bar (alu easier for manual cutting/drilling)",
+        "show_length": False,
+        "show_dimensions": True,
+        "override_quantity": False,
+        "category": "fabricated",
+    },
+    "2z spindle clamp tram blocks": {
+        "name": "2Z Spindle Clamp Tram Block (alu or steel)",
+        "description": "Spindle clamp tram block (alu easier for manual cutting/drilling)",
         "show_length": False,
         "show_dimensions": True,
         "override_quantity": False,
@@ -553,6 +592,16 @@ def process_component(component, component_path, parts_list, custom_parts, unrec
     visible_bodies = [body for body in component.bRepBodies if body.isVisible]
     body_matches = [(body, find_custom_part(body.name, custom_parts)) for body in visible_bodies]
     has_recognized_body = any(part_info is not None for _, part_info in body_matches)
+
+    # Some parts (e.g. the 2Z plates) only carry their name on the component and
+    # consist of generically named bodies; identify those by the component name.
+    if not has_recognized_body:
+        component_part = find_custom_part(component.name, custom_parts)
+        if component_part is not None:
+            body_matches = [
+                (body, component_part if is_generic_body_name(body.name) else part_info)
+                for body, part_info in body_matches
+            ]
 
     for body, part_info in body_matches:
         # Imported hardware often consists of one properly named body plus
