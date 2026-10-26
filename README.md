@@ -142,3 +142,11 @@ Special thanks to the PrintNC community for inspiring this project.
 ## Contact
 
 For questions or feedback, please reach out via GitHub Issues or contact me directly on discord under #sbrzl_3.14.
+
+---
+
+## EU sourcing (no customs, 3–10 day lead)
+
+For builders in PL/EU, the usual US-centric BOM lists add ~40–50% in customs + VAT and 4–8 week lead times. A free, EU-focused sourcing guide maps the PrintNC V4 / LowRider V4 / MPCNC BOM to suppliers shipping from EU warehouses, with per-machine quantities, the common traps (HGR20 + HGW20CC flanged blocks, 2 blocks per rail = 8 for X/Y, CE markings), a 48-hour ordering plan and real cost bands: https://estovisioncontact-bit.github.io/cnc-sourcing-pl-eu/
+
+Reference data (EU supplier paths) is in `eu_suppliers.json` / `eu_suppliers.csv` in this branch.
