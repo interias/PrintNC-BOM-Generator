@@ -48,6 +48,7 @@ The tool uses a `CUSTOM_PARTS` dictionary (defined at the top of `generate_bom.p
 - **override_quantity**: If `False`, the quantity is aggregated by counting matching bodies. If an integer `> 0` is provided, that fixed value is used as the quantity instead.
 - **category** *(optional)*: `"purchased"` or `"fabricated"`; defaults to `"purchased"`.
 - **aliases** *(optional)*: A list of additional key strings that should also match this part.
+- **supplier_hint** *(optional)*: Where to source the part, shown in the **Supplier Hint** column when `INCLUDE_SUPPLIER_HINTS = True` (off by default). The bundled hints are sourcing routes for EU builders, not fixed quotes.
 
 > **Note:** Matching is by normalized prefix, so define more specific keys before more general ones (e.g. `"sfu1204 ballscrew nut block 22mm bore"` before `"sfu1204 ballscrew nut"`).
 
@@ -108,18 +109,9 @@ Each parts section uses the following columns:
 | 1            | X M5 Threaded Rod   | X-axis threaded rod | 5          | 300.0           |                     |
 | 2            | Steel: X Frame Tubing | X-frame steel tubing | 2       | 500.0           | 500 x 50 x 50       |
 
-The Unrecognized Parts section adds a trailing **Path** column showing where each unmatched body lives in the component tree.
+With `INCLUDE_SUPPLIER_HINTS = True`, the parts sections add a trailing **Supplier Hint** column. The Unrecognized Parts section adds a trailing **Path** column showing where each unmatched body lives in the component tree.
 
 ---
-
-## EU/PL supplier data
-
-This repo now includes reference sourcing data for EU/PL builders:
-
-- `eu_suppliers.json` — structured supplier paths, cost bands and ordering traps
-- `eu_suppliers.csv` — flat table for quick import/spreadsheets
-
-Data source: CNC Sourcing Guide PL/EU v2. Lengths and quantities must still come from your CAD cutting list.
 
 ## License
 
@@ -142,11 +134,3 @@ Special thanks to the PrintNC community for inspiring this project.
 ## Contact
 
 For questions or feedback, please reach out via GitHub Issues or contact me directly on discord under #sbrzl_3.14.
-
----
-
-## EU sourcing (no customs, 3–10 day lead)
-
-For builders in PL/EU, the usual US-centric BOM lists add ~40–50% in customs + VAT and 4–8 week lead times. A free, EU-focused sourcing guide maps the PrintNC V4 / LowRider V4 / MPCNC BOM to suppliers shipping from EU warehouses, with per-machine quantities, the common traps (HGR20 + HGW20CC flanged blocks, 2 blocks per rail = 8 for X/Y, CE markings), a 48-hour ordering plan and real cost bands: https://estovisioncontact-bit.github.io/cnc-sourcing-pl-eu/
-
-Reference data (EU supplier paths) is in `eu_suppliers.json` / `eu_suppliers.csv` in this branch.
