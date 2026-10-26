@@ -11,6 +11,27 @@ IGNORED_COMPONENT_PATH_PARTS = (
 )
 
 
+# Default body names Fusion assigns per UI language (string table key
+# BodyDefaultUserName). The language of whoever created the body applies, so a
+# model can mix them, e.g. "Body1" next to "Körper2".
+GENERIC_BODY_NAMES = (
+    "Body",     # en
+    "Körper",   # de
+    "Corps",    # fr
+    "Cuerpo",   # es
+    "Corpo",    # it, pt-BR
+    "Bryła",    # pl
+    "Gövde",    # tr
+    "ボディ",    # ja
+    "본체",      # ko
+    "实体",      # zh-CN
+)
+GENERIC_BODY_NAME_PATTERN = re.compile(
+    r"(?:" + "|".join(map(re.escape, GENERIC_BODY_NAMES)) + r")\s*(?:\d+)?(?:\s*\(\d+\))*",
+    re.IGNORECASE,
+)
+
+
 CUSTOM_PARTS = {
     "m4x8 Pan Head": {
         "name": "M4x8 Pan Head",
@@ -366,6 +387,13 @@ CUSTOM_PARTS = {
         "show_dimensions": False,
         "override_quantity": False,
     },
+    "80mm 2.2kw spindle": {
+        "name": "80mm 2.2kW Spindle",
+        "description": "Water-cooled spindle",
+        "show_length": False,
+        "show_dimensions": False,
+        "override_quantity": False,
+    },
     "wasteboard": {
         "name": "Wasteboard",
         "description": "Replaceable work surface",
@@ -385,6 +413,38 @@ CUSTOM_PARTS = {
     "1z plate": {
         "name": "1Z Plate (alu or steel)",
         "description": "Single-carriage Z plate (alu easier for manual cutting/drilling)",
+        "show_length": False,
+        "show_dimensions": True,
+        "override_quantity": False,
+        "category": "fabricated",
+    },
+    "2z 300mm z plate": {
+        "name": "2Z Plate (alu or steel)",
+        "description": "Dual-carriage Z plate (alu easier for manual cutting/drilling)",
+        "show_length": False,
+        "show_dimensions": True,
+        "override_quantity": False,
+        "category": "fabricated",
+    },
+    "2z tram plate": {
+        "name": "2Z Tram Plate (alu or steel)",
+        "description": "Spindle tram plate (alu easier for manual cutting/drilling)",
+        "show_length": False,
+        "show_dimensions": True,
+        "override_quantity": False,
+        "category": "fabricated",
+    },
+    "2z zplate tram bar": {
+        "name": "2Z Tram Bar (alu or steel)",
+        "description": "Z-plate tram bar (alu easier for manual cutting/drilling)",
+        "show_length": False,
+        "show_dimensions": True,
+        "override_quantity": False,
+        "category": "fabricated",
+    },
+    "2z spindle clamp tram blocks": {
+        "name": "2Z Spindle Clamp Tram Block (alu or steel)",
+        "description": "Spindle clamp tram block (alu easier for manual cutting/drilling)",
         "show_length": False,
         "show_dimensions": True,
         "override_quantity": False,
@@ -509,7 +569,7 @@ def is_generic_body_name(name):
     """Return whether a Fusion body has an automatically generated name."""
     if not name:
         return True
-    return re.fullmatch(r"body(?:\d+)?(?:\s*\(\d+\))*", name.strip(), re.IGNORECASE) is not None
+    return GENERIC_BODY_NAME_PATTERN.fullmatch(name.strip()) is not None
 
 
 def process_component(component, component_path, parts_list, custom_parts, unrecognized_parts):
@@ -532,6 +592,16 @@ def process_component(component, component_path, parts_list, custom_parts, unrec
     visible_bodies = [body for body in component.bRepBodies if body.isVisible]
     body_matches = [(body, find_custom_part(body.name, custom_parts)) for body in visible_bodies]
     has_recognized_body = any(part_info is not None for _, part_info in body_matches)
+
+    # Some parts (e.g. the 2Z plates) only carry their name on the component and
+    # consist of generically named bodies; identify those by the component name.
+    if not has_recognized_body:
+        component_part = find_custom_part(component.name, custom_parts)
+        if component_part is not None:
+            body_matches = [
+                (body, component_part if is_generic_body_name(body.name) else part_info)
+                for body, part_info in body_matches
+            ]
 
     for body, part_info in body_matches:
         # Imported hardware often consists of one properly named body plus
@@ -601,7 +671,9 @@ def export_parts_list_to_csv(parts_list, custom_parts, unrecognized_parts, model
         if dialog_result == adsk.core.DialogResults.DialogOK:
             file_path = file_dialog.filename
 
-            with open(file_path, "w", newline="") as csvfile:
+            # Keep the platform encoding so Excel honors "sep=", but don't fail on
+            # characters it cannot represent (e.g. Japanese body names).
+            with open(file_path, "w", newline="", errors="replace") as csvfile:
                 # Tell Excel to use commas regardless of the system list separator.
                 csvfile.write("sep=,\n")
                 csv_writer = csv.writer(csvfile)
