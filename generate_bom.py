@@ -289,6 +289,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "m6-1.0 90 grease fitting": {
         "name": "M6-1.0 90° Grease Fitting",
@@ -296,6 +297,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "hm12-57": {
         "name": "HM12-57 Ballscrew Mount",
@@ -367,6 +369,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "d30l40 8-12mm coupler": {
         "name": "D30L40 8-12mm Coupler",
@@ -374,6 +377,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "d25l30 8-8mm coupler": {
         "name": "D25L30 8-8mm Coupler",
@@ -381,6 +385,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "sfu1610 nut": {
         "name": "SFU1610 Ballscrew Nut",
@@ -431,6 +436,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "80mm 3 hole spindle clamp": {
         "name": "80mm 3-Hole Spindle Clamp",
@@ -438,6 +444,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "80mm 2.2kw spindle": {
         "name": "80mm 2.2kW Spindle",
@@ -445,6 +452,7 @@ CUSTOM_PARTS = {
         "show_length": False,
         "show_dimensions": False,
         "override_quantity": False,
+        "supplier_hint": SUPPLIER_EU_ONLINE,
     },
     "wasteboard": {
         "name": "Wasteboard",
